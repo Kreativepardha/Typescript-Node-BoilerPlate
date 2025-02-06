@@ -1,11 +1,15 @@
 {
-  "name": "Boiler-Plate",
+  "name": "BoilerPlate",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "node test",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint": "eslint",
+    "lint:fix": "eslint --fix",
+    "format:check": "prettier . --check",
+    "format:fix": "prettier . --fix"
   },
   "keywords": [],
   "author": "",
@@ -13,11 +17,24 @@
   "devDependencies": {
     "@commitlint/cli": "^19.7.1",
     "@commitlint/config-conventional": "^19.7.1",
+    "@eslint/js": "^9.19.0",
     "@types/node": "^22.13.1",
-    "husky": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.23.0",
+    "@typescript-eslint/parser": "^8.23.0",
+    "eslint": "^9.19.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-prettier": "^5.2.3",
+    "eslint-plugin-unused-imports": "^4.1.4",
+    "husky": "^8.0.3",
     "lint-staged": "^15.4.3",
     "nodemon": "^3.1.9",
+    "prettier": "^3.4.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.23.0"
+  },
+  "dependencies": {
+    "winston": "^3.17.0"
   }
 }
