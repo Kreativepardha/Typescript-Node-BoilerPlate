@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "node test",
+    "build": "",
     "dev": "cross-env NODE_ENV=development nodemon src/server.ts",
     "start": "cross-env NODE_ENV=development nodemon dist/server.js",
     "prepare": "husky install",
@@ -22,6 +23,7 @@
       "npm run format:fix"
     ]
   },
+
   "devDependencies": {
     "@commitlint/cli": "^19.7.1",
     "@commitlint/config-conventional": "^19.7.1",

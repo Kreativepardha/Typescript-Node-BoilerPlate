@@ -1,0 +1,45 @@
+name: Ci Pipeline
+
+on: 
+  pull_request:
+    branches:
+      - main
+      - master
+      - dev
+  push:
+    branchers:
+      - main
+      - dev
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'pnpm'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
+      
+      - name: Install Dependenices with pnpm
+        run: pnpm install --frozen-lockfile
+
+      - name: Run Linter
+        run: pnpm run lint
+      
+      - name: Check Formatting
+        run: pnpm run format:check
+
+      # - name: Run Tests
+      #   run: pnpm test
+
+      # - name: Build Project
+      #   run: pnpm run build
