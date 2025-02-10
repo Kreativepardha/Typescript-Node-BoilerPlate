@@ -7,6 +7,12 @@ on:
       - master
       - dev
 
+  push:
+    branches:
+      - main
+      - dev
+      - master
+
 jobs:
   build:
     runs-on: ubuntu-latest
