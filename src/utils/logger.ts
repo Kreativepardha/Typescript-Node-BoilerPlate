@@ -1,37 +1,37 @@
-import { createLogger, format, transports } from "winston";
-import { ConsoleTransportInstance } from "winston/lib/winston/transports";
+import { createLogger, format, transports } from 'winston'
 import util from 'util'
+import winston from 'winston'
 
-const consoleLogFormat = format.printf((info) => {
-    const { level, message, timestamp, meta = {} } = info
-    
-    const customLevel = level.toUpperCase()
-
-    const customTimeStamp = timestamp
-
-    const customMessage = message
-
-    const customMeta = util.inspect(meta, {
-        showHidden: false,
-        depth: null
-    })
-    
-    const customLog = `${customLevel} [${customTimeStamp}] ${customMessage}\n ${'META'} ${customMeta}\n `
-})
-
-const consoleTransport = (): Array<ConsoleTransportInstance> => {
-    return [
-        new transports.Console({
-            level: 'info',
-            format: format.combine(format.timestamp(), consoleLogFormat)
-        })
-    ]
+// Define color styles for different log levels
+const logColors = {
+    error: 'red',
+    warn: 'yellow',
+    info: 'green',
+    http: 'magenta',
+    debug: 'blue'
 }
 
+const colorizer = format.colorize()
 
-export default createLogger({
-    defaultMeta: {
-        meta: {}
-    },
-    transports: [...consoleTransport()]
+const consoleLogFormat = format.printf(({ level, message, timestamp, meta = {} }) => {
+    return (
+        colorizer.colorize(level, `${level.toUpperCase()} [${String(timestamp)}]`) +
+        ` ${String(message)}\nMETA: ${util.inspect(meta, { depth: null })}\n`
+    )
 })
+
+const logger = createLogger({
+    level: 'info',
+    format: format.combine(format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }), format.json()),
+    defaultMeta: { service: 'auth-service' },
+    transports: [
+        new transports.Console({
+            format: format.combine(format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }), format.colorize(), consoleLogFormat)
+        }),
+        new transports.File({ filename: '/var/log/auth-service.log' })
+    ]
+})
+
+winston.addColors(logColors)
+
+export default logger
