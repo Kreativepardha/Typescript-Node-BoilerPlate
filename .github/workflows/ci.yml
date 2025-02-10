@@ -6,11 +6,6 @@ on:
       - main
       - master
       - dev
-  push:
-    branchers:
-      - main
-      - dev
-      - master
 
 jobs:
   build:
