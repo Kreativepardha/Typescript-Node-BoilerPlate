@@ -21,32 +21,26 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
       
+      - name: Install PNPM
+        uses: pnpm/action-setup@v4 
+        with:
+          version: 8  
       - name: Setup Node.js 20
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'pnpm'
+          cache: 'pnpm'  
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile  
 
-      - name: Install PNPM
-        uses: pnpm/action-setup@v4
-        with:
-          version: 8 # Ensure this matches your project's expected version
-
-      - name: Verify PNPM Installation
-        run: pnpm --version  # Debugging step to ensure PNPM is available
-
-      - name: Install Dependencies with pnpm
-        run: pnpm install --frozen-lockfile
+      - name: Run Tests
+        run: pnpm test
 
       - name: Run Linter
         run: pnpm run lint
       
       - name: Check Formatting
         run: pnpm run format:check
-
-      # Uncomment these steps when needed
-      # - name: Run Tests
-      #   run: pnpm test
 
       # - name: Build Project
       #   run: pnpm run build
