@@ -1,4 +1,4 @@
-name: Ci Pipeline
+name: CI Pipeline
 
 on: 
   pull_request:
@@ -27,12 +27,14 @@ jobs:
           node-version: 20
           cache: 'pnpm'
 
-      - name: Enable Corepack (to install pnpm)
-        run: corepack enable
+      - name: Install PNPM
+        uses: pnpm/action-setup@v4
+        with:
+          version: 8 # Ensure this matches your project's expected version
 
-      # - name: Install pnpm
-      #   run: npm install -g pnpm
-      
+      - name: Verify PNPM Installation
+        run: pnpm --version  # Debugging step to ensure PNPM is available
+
       - name: Install Dependencies with pnpm
         run: pnpm install --frozen-lockfile
 
@@ -42,6 +44,7 @@ jobs:
       - name: Check Formatting
         run: pnpm run format:check
 
+      # Uncomment these steps when needed
       # - name: Run Tests
       #   run: pnpm test
 
