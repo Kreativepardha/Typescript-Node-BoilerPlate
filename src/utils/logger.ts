@@ -1,5 +1,6 @@
 import { createLogger, format, transports } from 'winston'
 import util from 'util'
+import winston from 'winston'
 
 // Define color styles for different log levels
 const logColors = {
@@ -13,11 +14,9 @@ const logColors = {
 const colorizer = format.colorize()
 
 const consoleLogFormat = format.printf(({ level, message, timestamp, meta = {} }) => {
-    // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
     return (
-        colorizer.colorize(level, `${level.toUpperCase()} [${timestamp}]`) +
-        // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
-        ` ${message}\nMETA: ${util.inspect(meta, { depth: null })}\n`
+        colorizer.colorize(level, `${level.toUpperCase()} [${String(timestamp)}]`) +
+        ` ${String(message)}\nMETA: ${util.inspect(meta, { depth: null })}\n`
     )
 })
 
@@ -33,7 +32,6 @@ const logger = createLogger({
     ]
 })
 
-// eslint-disable-next-line @typescript-eslint/no-unsafe-call
-createLogger.addColors(logColors)
+winston.addColors(logColors)
 
 export default logger
