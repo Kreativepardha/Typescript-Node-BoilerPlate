@@ -13,7 +13,7 @@ jobs:
 
     steps:
       - name: Checkout Repository
-      - uses: actions/checkout@v4
+        uses: actions/checkout@v4
       
       - name: Setup Node.js 20
         uses: actions/setup-node@v4
@@ -24,7 +24,7 @@ jobs:
       - name: Install pnpm
         run: npm install -g pnpm
       
-      - name: Install Dependenices with pnpm
+      - name: Install Dependencies with pnpm
         run: pnpm install --frozen-lockfile
 
       - name: Run Linter
