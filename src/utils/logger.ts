@@ -1,5 +1,5 @@
-import { createLogger, format, transports } from "winston";
-import { ConsoleTransportInstance } from "winston/lib/winston/transports";
+import { createLogger, format, transports } from 'winston';
+import { ConsoleTransportInstance } from 'winston/lib/winston/transports';
 import util from 'util'
 
 const consoleLogFormat = format.printf((info) => {
