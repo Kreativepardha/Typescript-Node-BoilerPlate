@@ -1,7 +1,13 @@
-import logger from './utils/logger'
+import express, { Application } from 'express'
+import config from './config/config';
+import logger from './utils/logger';
 
-logger.info('gueigiue')
-logger.info('gueigiue')
-logger.info('gueigiue')
-logger.info('gueigiue')
-logger.error('gueigiue')
+
+
+const app = express() as unknown as Application;
+
+app.use(express.json())
+
+app.listen(Number(config.PORT),() => {
+   logger.info(`Server is running on PORT:: ${config.PORT}`)
+})

@@ -71,3 +71,15 @@ change: Refactor login logic  ❌ (not an allowed type)
 ---
 
 By following these rules, your commits will be **clean, structured, and useful**! 🚀
+
+## TESTS
+
+| Test Type | What to Test? | Tools Used |
+| --- | --- | --- |
+| **Unit Tests** | Middlewares, Models, Utils | Jest |
+| **Integration Tests** | APIs, Services, DB Queries | Supertest, Jest |
+| **Database Tests** | Prisma Queries, Constraints, Relations | Jest, Prisma |
+| **Utility Tests** | Helper Functions, Validators, Formatters | Jest |
+| **Fixtures** | Mock Data for Users, Tasks, etc. | Plain TS Files |
+
+---

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-base-to-string */
 import { createLogger, format, transports } from 'winston'
 import util from 'util'
 import winston from 'winston'
@@ -28,7 +29,7 @@ const logger = createLogger({
         new transports.Console({
             format: format.combine(format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }), format.colorize(), consoleLogFormat)
         }),
-        new transports.File({ filename: '/var/log/auth-service.log' })
+        new transports.File({ filename: 'logs/auth-service.log' , level: 'error'})
     ]
 })
 
