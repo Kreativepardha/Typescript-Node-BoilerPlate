@@ -11,3 +11,4 @@ app.use(express.json())
 app.listen(Number(config.PORT),() => {
    logger.info(`Server is running on PORT:: ${config.PORT}`)
 })
+
