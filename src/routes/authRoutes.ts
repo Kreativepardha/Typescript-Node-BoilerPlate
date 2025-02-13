@@ -1,5 +1,6 @@
 import { Router } from 'express';
-import {  registerController } from '../controllers/authController';
+import {  loginController, registerController } from '../controllers/authController';
+import { loginRateLimiter } from '../middlewares/globalRateLimiter';
 
 
 
@@ -7,7 +8,7 @@ const router = Router()
 
 
 router.post('/register', registerController)
-router.post('/login', )
+router.post('/login', loginRateLimiter ,loginController )
 router.post('/refresh-token', )
 router.post('/logout', )
 

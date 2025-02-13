@@ -83,3 +83,48 @@ By following these rules, your commits will be **clean, structured, and useful**
 | **Fixtures** | Mock Data for Users, Tasks, etc. | Plain TS Files |
 
 ---
+
+## # **🚀 Rate Limiter Documentation**  
+
+### **📌 Overview**  
+- Implements **Token Bucket Rate Limiting** in an **Express.js API**.  
+- Uses **Redis** to manage request limits across **multiple API instances**.  
+- **Prevents API abuse** while allowing short request bursts.  
+- **Separate login rate limiter** to prevent brute-force attacks.  
+
+---
+
+### **📦 Setup & Installation**  
+
+1️⃣ **Install dependencies**  
+```sh
+npm install
+```
+
+2️⃣ **Start Redis using Docker Compose**  
+```sh
+docker-compose up -d
+```
+> **Note:** Redis is required for rate limiting.
+
+3️⃣ **Start the Express Server**  
+```sh
+npm run dev
+```
+
+---------------------------------------------------------------------
+### **🛠️ Rate Limiter Configuration**  
+#### **Global API Rate Limiter**  
+- **Limits requests per IP** (default: **100 per minute**).  
+- **Tokens refill over time** (2 tokens per second).  
+
+#### **Login Rate Limiter (Stricter)**  
+- Allows **5 login attempts per minute**.  
+- Prevents **brute-force attacks**.  
+
+### **✅ Summary**  
+✔ **Global Rate Limiter** → Limits API requests per minute.  
+✔ **Login Rate Limiter** → Prevents excessive login attempts.  
+✔ **Redis Integration** → Ensures rate limiting across distributed instances.  
+✔ **Docker Support** → Easy Redis setup with `docker-compose`.  
+-------------------------------------------------------------------------
