@@ -6,6 +6,7 @@ import xss from 'xss-clean'
 import mongoSanitize from 'express-mongo-sanitize'
 import cors from 'cors'
 import { errorHandler } from './middlewares/errorHandler';
+import { globalRateLimiter } from './middlewares/globalRateLimiter';
 
 const app = express();
 app.use(helmet())
@@ -20,7 +21,8 @@ app.use(cors())
 // }
 
 app.use(errorHandler)
-
+app.use(globalRateLimiter)
+ 
 
 
 
